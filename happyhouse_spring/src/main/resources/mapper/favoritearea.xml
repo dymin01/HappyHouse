@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.FavoriteAreaMapper">
+
+	<select id="areaList" parameterType="Integer" resultType="FavoriteAreaDto">
+		select user_idx, gugunname, guguncode, dongname
+		from favoritearea
+        where user_idx = #{user_idx}
+	</select>
+	
+	<insert id="addArea" parameterType="favoriteAreaDto">
+		insert into favoritearea (user_idx, gugunname, guguncode, dongname)
+		values (#{user_idx}, #{gugunname}, #{guguncode}, #{dongname})
+	</insert>
+	
+	<delete id="deleteArea" parameterType="favoriteAreaDto">
+		delete from favoritearea
+		where dongname = #{dongname} and user_idx = #{user_idx}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sidogugundong">
+	
+	<select id="getAllSidocode" resultType="sidocodeDto">
+		SELECT left(sido_code,2) sido_code, sido_name FROM sidocode order by sido_code
+	</select>
+	
+	<select id="getGuguncode" parameterType="string" resultType="GuguncodeDto">
+		SELECT left(gugun_code,5) gugun_code, gugun_name FROM guguncode
+		WHERE left(gugun_code,2) = #{sido}
+		order by gugun_code
+	</select>
+	
+	<select id="getDongcodes" parameterType="string" resultType="HouseInfoDto">
+        SELECT dong, code FROM dongcode
+            where code = #{gugun}
+            ORDER BY dong
+    </select>
+	
+</mapper>
